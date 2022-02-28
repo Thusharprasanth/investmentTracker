@@ -7,6 +7,7 @@ const LocalStratergy = require('passport-local')
 const User = require('./models/user')
 const session = require('express-session')
 const flash = require('connect-flash')
+const moment = require('moment')
 
 const app = express()
 
@@ -50,6 +51,7 @@ mongoose.connect(dburl).then(
 
 app.use((req,res,next)=>{
     res.locals.currentUser = req.user
+    res.locals.moment = moment;
     next()
 })
 
@@ -84,6 +86,7 @@ app.post('/investment', async(req,res)=>{
     await investment.save()
     res.redirect('/',)
 })
+
 
 
 
