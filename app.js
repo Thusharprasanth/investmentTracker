@@ -73,7 +73,7 @@ app.get('',async(req,res)=>{
     res.render('index', {investments, balance, credit, debit})
 }
     else{
-        res.render('users/register')
+        res.render('users/login')
     }
     
     
@@ -87,6 +87,11 @@ app.post('/investment', async(req,res)=>{
     res.redirect('/',)
 })
 
+app.delete('/delete/:id', async(req,res)=>{
+    const { id } = req.params
+    await Investment.findByIdAndDelete(id)
+    res.redirect('/')
+})
 
 
 
